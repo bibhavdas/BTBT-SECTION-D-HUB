@@ -171,19 +171,19 @@
         .dark-mode .subject-item { background: rgba(0,0,0,0.3); }
         .subject-item:hover { background: var(--accent-secondary); padding-left: 20px; }
 
-        /* Foreign Language Sub-menu */
-        .lang-submenu {
+        /* Dropdown/Sub-menu styling (Used for Lang & Applied Science) */
+        .submenu-container {
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
             margin-left: 20px; border-left: 2px solid var(--text-muted);
         }
-        .lang-submenu.open { max-height: 200px; margin-top: 10px; }
+        .submenu-container.open { max-height: 200px; margin-top: 10px; }
         
-        .lang-item {
+        .sub-item {
             display: block; padding: 10px 15px; margin: 5px 0;
             background: rgba(255,255,255,0.3); border-radius: 0 10px 10px 0;
             cursor: pointer; font-size: 0.9rem;
         }
-        .lang-item:hover { background: var(--accent-primary); color: white; }
+        .sub-item:hover { background: var(--accent-primary); color: white; }
 
         /* --- ANIMATED ELEMENTS --- */
         #anim-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
@@ -251,10 +251,20 @@
                 <!-- Maths with Active Link -->
                 <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/ENGINEERING-MATHEMATICS-SEMESTER-1/')">ENGINEERING MATHEMATICS 1</div>
                 
-                <!-- Other Subjects (Empty links = No Alert) -->
                 <div class="subject-item" onclick="openResource('')">AI IN BIOTECHNOLOGY</div>
                 <div class="subject-item" onclick="openResource('')">LIFE SCIENCES</div>
-                <div class="subject-item" onclick="openResource('')">APPLIED SCIENCES</div>
+                
+                <!-- APPLIED SCIENCES (Modified to Dropdown) -->
+                <div class="subject-item" onclick="toggleApplied()">
+                    APPLIED SCIENCES <span style="font-size:0.8rem">▼</span>
+                </div>
+                <div class="submenu-container" id="applied-menu">
+                    <!-- Chemistry (Linked) -->
+                    <div class="sub-item" onclick="openResource('https://bibhavdas.github.io/Applied-Science-Chemistry/')">🧪 Chemistry</div>
+                    <!-- Physics (Empty) -->
+                    <div class="sub-item" onclick="openResource('')">⚛️ Physics</div>
+                </div>
+
                 <div class="subject-item" onclick="openResource('')">DESIGN THINKING & PROTOTYPING</div>
                 <div class="subject-item" onclick="openResource('')">INTRODUCTION TO PROGRAMMING</div>
                 
@@ -262,10 +272,10 @@
                 <div class="subject-item" onclick="toggleLanguages()">
                     FOREIGN LANGUAGES <span style="font-size:0.8rem">▼</span>
                 </div>
-                <div class="lang-submenu" id="lang-menu">
-                    <div class="lang-item" onclick="openResource('')">🇩🇪 German</div>
-                    <div class="lang-item" onclick="openResource('')">🇪🇸 Spanish</div>
-                    <div class="lang-item" onclick="openResource('')">🇫🇷 French</div>
+                <div class="submenu-container" id="lang-menu">
+                    <div class="sub-item" onclick="openResource('')">🇩🇪 German</div>
+                    <div class="sub-item" onclick="openResource('')">🇪🇸 Spanish</div>
+                    <div class="sub-item" onclick="openResource('')">🇫🇷 French</div>
                 </div>
             </div>
         </div>
@@ -337,7 +347,9 @@
 
         function closeModal() {
             document.getElementById('sem1-modal').classList.remove('active');
+            // Close dropdowns when modal closes
             document.getElementById('lang-menu').classList.remove('open');
+            document.getElementById('applied-menu').classList.remove('open');
         }
 
         document.getElementById('sem1-modal').addEventListener('click', function(e) {
@@ -346,13 +358,16 @@
             }
         });
 
+        // Toggle functions for dropdowns
         function toggleLanguages() {
-            const menu = document.getElementById('lang-menu');
-            menu.classList.toggle('open');
+            document.getElementById('lang-menu').classList.toggle('open');
+        }
+
+        function toggleApplied() {
+            document.getElementById('applied-menu').classList.toggle('open');
         }
 
         // UPDATED: Now accepts a URL and only opens if URL exists. 
-        // No alert() messages.
         function openResource(url) {
             if (url && url.length > 0) {
                 window.open(url, '_blank');
