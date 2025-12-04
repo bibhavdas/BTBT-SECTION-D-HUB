@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Critical for mobile -->
     <title>ADAMAS University HUB - BTBT Section D</title>
     <style>
         /* --- CSS VARIABLES & THEMES --- */
@@ -31,19 +31,12 @@
 
         /* --- THEME PALETTES --- */
         body.theme-cherry { --accent-primary: #d81b60; --accent-secondary: #fce4ec; }
-        body.theme-cherry.dark-mode { --accent-primary: #ff4081; --accent-secondary: #880e4f; }
         body.theme-forest { --accent-primary: #4caf50; --accent-secondary: #e8f5e9; }
-        body.theme-forest.dark-mode { --accent-primary: #81c784; --accent-secondary: #1b5e20; }
         body.theme-ocean { --accent-primary: #0277bd; --accent-secondary: #e1f5fe; }
-        body.theme-ocean.dark-mode { --accent-primary: #4fc3f7; --accent-secondary: #01579b; }
         body.theme-sun { --accent-primary: #ffeb3b; --accent-secondary: #fff9c4; --text-main: #333; }
-        body.theme-sun.dark-mode { --accent-primary: #ffc107; --accent-secondary: #f57f17; --text-main: #eee; }
         body.theme-space { --accent-primary: #7c4dff; --accent-secondary: #ede7f6; }
-        body.theme-space.dark-mode { --accent-primary: #b388ff; --accent-secondary: #311b92; }
         body.theme-japanese { --accent-primary: #b71c1c; --accent-secondary: #ffebee; --font-main: 'Noto Serif JP', serif; }
-        body.theme-japanese.dark-mode { --accent-primary: #ff5252; --accent-secondary: #3e0a0a; }
         body.theme-medieval { --accent-primary: #8d6e63; --accent-secondary: #efebe9; --font-main: 'Palatino Linotype', serif; }
-        body.theme-medieval.dark-mode { --accent-primary: #d7ccc8; --accent-secondary: #3e2723; }
 
         /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; transition: color 0.3s, background-color 0.3s, border-color 0.3s; }
@@ -112,10 +105,23 @@
         body.theme-forest button.audio-toggle { display: inline-block; }
 
         /* --- CONTENT --- */
-        .hero { text-align: center; padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-        .hero h1 { font-size: 3rem; color: var(--accent-primary); margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); background: var(--bg-card); display: inline-block; padding: 10px 20px; border-radius: 10px; backdrop-filter: blur(5px); }
-        .hero p { font-size: 1.2rem; line-height: 1.6; background: var(--bg-card); padding: 15px; border-radius: 10px; box-shadow: var(--shadow); display: inline-block; }
-        .disclaimer { font-size: 0.9rem; color: var(--text-main); margin-top: 20px; font-style: italic; background-color: var(--bg-card); backdrop-filter: blur(var(--backdrop-blur)); -webkit-backdrop-filter: blur(var(--backdrop-blur)); padding: 15px; border-radius: 10px; box-shadow: var(--shadow); display: inline-block; }
+        .hero { text-align: center; padding: 60px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* Unified Hero Box for better mobile look */
+        .hero-box {
+            background-color: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--backdrop-blur));
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .hero h1 { font-size: 3rem; color: var(--accent-primary); margin: 0 0 15px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .hero p { font-size: 1.2rem; line-height: 1.6; margin: 10px 0; color: var(--text-muted); }
+        .disclaimer { font-size: 0.9rem; color: var(--text-main); margin-top: 15px; font-style: italic; opacity: 0.8; }
 
         /* --- CARDS --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px 5%; margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
@@ -136,7 +142,7 @@
         .icon-chat::before { content: "💬"; }
         .icon-video::before { content: "▶️"; }
 
-        /* --- CHAT MODAL STYLES (NEW) --- */
+        /* --- CHAT MODAL STYLES --- */
         #chat-modal {
             position: fixed; bottom: 80px; right: 20px; width: 350px; height: 500px;
             background: var(--bg-card); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -160,6 +166,58 @@
         #msgInput { flex-grow: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; background: rgba(255,255,255,0.5); color: var(--text-main); }
         #sendBtn { background: var(--accent-primary); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; transition: transform 0.2s; }
         #sendBtn:hover { transform: scale(1.1); }
+
+        /* =========================================
+           MOBILE RESPONSIVE VIEW (Critical Fixes)
+           ========================================= */
+        @media screen and (max-width: 768px) {
+            /* 1. Header: Stack Vertically */
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 10px;
+            }
+            .controls {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            /* 2. Hero: Better Text Sizing & Margins */
+            .hero {
+                padding: 30px 15px;
+            }
+            .hero-box {
+                padding: 20px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* 3. Grid: FORCE Single Column Stack */
+            /* This fixes the tiny cards issue! */
+            .grid-container {
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                padding: 10px 20px 40px 20px;
+            }
+
+            /* 4. Chat Modal: Full Screen Bottom Sheet */
+            #chat-modal {
+                width: 100%;
+                height: 75vh;
+                right: 0;
+                bottom: 0;
+                border-radius: 20px 20px 0 0;
+                transform-origin: bottom center;
+            }
+            /* Reset scale logic for slide-up animation on mobile */
+            #chat-modal { transform: translateY(100%); }
+            #chat-modal.active { transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="theme-cherry">
@@ -200,9 +258,12 @@
     </header>
 
     <div class="hero">
-        <h1>Welcome to BTBT Hub</h1>
-        <p>You can find many of your study materials in here, a photo gallery and a chat spot.</p>
-        <p class="disclaimer">This website is not managed by Adamas University. It is a community project of BTBT section D.</p>
+        <!-- Combined wrapper for cleaner look -->
+        <div class="hero-box">
+            <h1>Welcome to BTBT Hub</h1>
+            <p>You can find many of your study materials in here, a photo gallery and a chat spot.</p>
+            <p class="disclaimer">This website is not managed by Adamas University. It is a community project of BTBT section D.</p>
+        </div>
     </div>
 
     <div class="grid-container">
@@ -216,15 +277,15 @@
         </div>
 
         <!-- Card 2 -->
-<div class="card" onclick="window.location.href='study.html'">
-    <div class="card-img icon-study"></div>
-    <div class="card-content">
-        <h3>Study Materials</h3>
-        <p>Notes, PDFs, and resources.</p>
-    </div>
-</div>
+        <div class="card" onclick="window.location.href='study.html'">
+            <div class="card-img icon-study"></div>
+            <div class="card-content">
+                <h3>Study Materials</h3>
+                <p>Notes, PDFs, and resources.</p>
+            </div>
+        </div>
 
-        <!-- Card 3 (CHAT) - Now Functional -->
+        <!-- Card 3 -->
         <div class="card" onclick="toggleChat()">
             <div class="card-img icon-chat"></div>
             <div class="card-content">
@@ -243,7 +304,7 @@
         </div>
     </div>
 
-    <!-- CHAT MODAL (NEW) -->
+    <!-- CHAT MODAL -->
     <div id="chat-modal">
         <div class="chat-header">
             <span>💬 Class Chat</span>
@@ -261,17 +322,15 @@
     </div>
 
     <footer>
-        &copy; 2025 BTBT Section D Community Project
+        &copy; 2023 BTBT Section D Community Project
     </footer>
 
     <!-- SCRIPT (Type Module for Firebase) -->
     <script type="module">
-        // --- 1. FIREBASE IMPORTS ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } 
         from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // --- 2. YOUR CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyCJjujcqpefUQ9w937fXL4NFLGvC_tVPHs",
             authDomain: "btbt-hub-chat.firebaseapp.com",
@@ -282,21 +341,17 @@
             measurementId: "G-ZPDSS7EN5Z"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const messagesRef = collection(db, "btbt-messages");
 
-        // --- 3. EXISTING SITE LOGIC ---
         const body = document.body;
         const themeSelector = document.getElementById('themeSelector');
         const modeBtn = document.getElementById('modeBtn');
         const audio = document.getElementById('forest-audio');
         const audioBtn = document.getElementById('audioBtn');
         const animLayer = document.getElementById('anim-layer');
-        let isAudioPlaying = false;
 
-        // Particle Functions (Local to module)
         function createFireflies() {
             const oldFireflies = document.querySelectorAll('.firefly');
             oldFireflies.forEach(el => el.remove());
@@ -324,16 +379,13 @@
             }
         }
 
-        // Expose functions to window (Required because type="module" isolates scopes)
         window.changeTheme = function(themeName) {
             body.className = themeName + (body.classList.contains('dark-mode') ? ' dark-mode' : '');
             localStorage.setItem('btbt-theme', themeName);
             
-            // Audio Logic
             if(themeName === 'theme-forest') {
                 createFireflies(); 
                 audioBtn.style.display = 'inline-block';
-                // Try autoplay
                 audio.volume = 0.4;
                 audio.play().then(() => {
                     audioBtn.innerText = '🔊';
@@ -347,7 +399,6 @@
                 audioBtn.style.display = 'none';
             }
             
-            // Petal Logic
             if(themeName === 'theme-cherry') createPetals();
             else {
                 const petals = document.querySelectorAll('.petal');
@@ -366,16 +417,12 @@
             else { audio.pause(); audioBtn.innerText = '🔇'; }
         };
 
-        // --- 4. CHAT FUNCTIONALITY ---
-        
-        // Get Username
         let username = localStorage.getItem('btbt_username');
         if (!username) {
             username = prompt("Welcome to Section D Hub! What is your name?") || "Anonymous";
             localStorage.setItem('btbt_username', username);
         }
 
-        // Toggle Modal
         window.toggleChat = function() {
             const modal = document.getElementById('chat-modal');
             modal.classList.toggle('active');
@@ -385,11 +432,9 @@
             }
         }
 
-        // Send Message
         window.sendMessage = async function() {
             const input = document.getElementById('msgInput');
             const text = input.value.trim();
-            
             if (text.length > 0) {
                 try {
                     await addDoc(messagesRef, {
@@ -400,7 +445,7 @@
                     input.value = "";
                 } catch (e) {
                     console.error("Error sending: ", e);
-                    alert("Message failed. Did you fix the Firebase Rules?");
+                    alert("Message failed.");
                 }
             }
         }
@@ -409,34 +454,25 @@
             if (e.key === 'Enter') window.sendMessage();
         }
 
-        // Listen for Real-time Updates
         const q = query(messagesRef, orderBy("createdAt", "asc"));
         onSnapshot(q, (snapshot) => {
             const chatBox = document.getElementById('chat-messages');
             chatBox.innerHTML = "";
-            
             snapshot.forEach((doc) => {
                 const data = doc.data();
                 const msgDiv = document.createElement('div');
                 const isMe = data.user === username;
-                
                 msgDiv.className = `message ${isMe ? 'my-msg' : 'other-msg'}`;
-                msgDiv.innerHTML = `
-                    <span class="msg-author">${data.user}</span>
-                    ${data.text}
-                `;
+                msgDiv.innerHTML = `<span class="msg-author">${data.user}</span>${data.text}`;
                 chatBox.appendChild(msgDiv);
             });
             chatBox.scrollTop = chatBox.scrollHeight;
         });
 
-        // --- INITIALIZATION ---
         const savedTheme = localStorage.getItem('btbt-theme') || 'theme-cherry';
         const savedMode = localStorage.getItem('btbt-mode');
-        
         themeSelector.value = savedTheme;
         window.changeTheme(savedTheme);
-
         if (savedMode === 'dark') {
             body.classList.add('dark-mode');
             modeBtn.innerText = '☀️ Light Mode';
