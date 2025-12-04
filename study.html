@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAMAS University - Study Materials</title>
+    <style>
+        /* --- COPYING CORE STYLES FROM HUB FOR CONSISTENCY --- */
+        :root {
+            --bg-body: #f4f4f9;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --text-main: #333333;
+            --text-muted: #666666;
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --border-radius: 16px;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --accent-primary: #d63384;
+            --accent-secondary: #f8d7da;
+            --backdrop-blur: 12px;
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-card: rgba(30, 30, 30, 0.85);
+            --text-main: #e0e0e0;
+            --text-muted: #cccccc;
+            --shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        /* THEMES */
+        body.theme-cherry { --accent-primary: #d81b60; --accent-secondary: #fce4ec; }
+        body.theme-cherry.dark-mode { --accent-primary: #ff4081; --accent-secondary: #880e4f; }
+        body.theme-forest { --accent-primary: #4caf50; --accent-secondary: #e8f5e9; }
+        body.theme-forest.dark-mode { --accent-primary: #81c784; --accent-secondary: #1b5e20; }
+        body.theme-ocean { --accent-primary: #0277bd; --accent-secondary: #e1f5fe; }
+        body.theme-ocean.dark-mode { --accent-primary: #4fc3f7; --accent-secondary: #01579b; }
+        body.theme-sun { --accent-primary: #ffeb3b; --accent-secondary: #fff9c4; --text-main: #333; }
+        body.theme-sun.dark-mode { --accent-primary: #ffc107; --accent-secondary: #f57f17; --text-main: #eee; }
+        body.theme-space { --accent-primary: #7c4dff; --accent-secondary: #ede7f6; }
+        body.theme-space.dark-mode { --accent-primary: #b388ff; --accent-secondary: #311b92; }
+        body.theme-japanese { --accent-primary: #b71c1c; --accent-secondary: #ffebee; --font-main: 'Noto Serif JP', serif; }
+        body.theme-japanese.dark-mode { --accent-primary: #ff5252; --accent-secondary: #3e0a0a; }
+        body.theme-medieval { --accent-primary: #8d6e63; --accent-secondary: #efebe9; --font-main: 'Palatino Linotype', serif; }
+        body.theme-medieval.dark-mode { --accent-primary: #d7ccc8; --accent-secondary: #3e2723; }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND LAYERS */
+        #bg-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background-size: cover; background-position: center;
+            background-attachment: fixed; transition: opacity 0.5s ease;
+        }
+        
+        /* Inserted URLs for Backgrounds */
+        body.theme-space #bg-layer { background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGlnZHp1cDJxMHI1NW5jaHJ1N2Qxc21oOWdtYTE0MG10dG5wZmxwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/D35fOVm9gSQ91icJeR/giphy.gif'); }
+        body.theme-ocean #bg-layer { background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWIxdnNlMjBscGl5OTU2NXlyZmVwejJ2d3hpZG1nZTFldWgyeXJxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPprajCN0pYyhvG/giphy.gif'); }
+        body.theme-ocean.dark-mode #bg-layer { filter: brightness(0.7); }
+        body.theme-forest #bg-layer { background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXJqcnBxbW8zbmtkeHhwYTM1c2U1MnVydTFnM2hlNzZjZW45d3B3YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RoFXqXWN639Qs/giphy.gif'); filter: brightness(0.8); }
+        body.theme-japanese #bg-layer { background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop'); }
+        body.theme-medieval #bg-layer { background-image: url('https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=2000&auto=format&fit=crop'); filter: sepia(0.3) contrast(1.1); }
+        body.theme-cherry #bg-layer { background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop'); }
+        body.theme-sun #bg-layer { background-color: #050505; background-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 230, 1) 0%, rgba(255, 215, 0, 0.8) 10%, rgba(255, 140, 0, 0.4) 20%, rgba(0, 0, 0, 0) 60%); }
+
+        /* HEADER */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background-color: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100;
+        }
+        .logo-container img { max-height: 50px; width: auto; }
+        .controls { display: flex; gap: 15px; }
+        .back-btn {
+            text-decoration: none; font-weight: bold; color: var(--text-main);
+            padding: 8px 15px; border-radius: 20px; border: 2px solid var(--accent-primary);
+            background: rgba(255,255,255,0.2);
+        }
+        .back-btn:hover { background: var(--accent-primary); color: #fff; }
+
+        /* --- STUDY MATERIAL SPECIFIC STYLES --- */
+        
+        .disclaimer-banner {
+            max-width: 800px; margin: 40px auto 20px;
+            text-align: center; padding: 20px;
+            background: var(--bg-card); border-radius: var(--border-radius);
+            box-shadow: var(--shadow); backdrop-filter: blur(var(--backdrop-blur));
+            border-left: 5px solid var(--accent-primary);
+        }
+        .disclaimer-banner h2 { margin: 0 0 10px 0; color: var(--accent-primary); }
+        .disclaimer-banner p { margin: 0; font-style: italic; color: var(--text-muted); }
+
+        .semester-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; padding: 20px 5%; max-width: 1200px; margin: 0 auto;
+        }
+
+        .sem-card {
+            background: var(--bg-card); padding: 40px 20px;
+            text-align: center; border-radius: var(--border-radius);
+            box-shadow: var(--shadow); cursor: pointer;
+            border: 2px solid transparent; position: relative;
+            overflow: hidden;
+        }
+        
+        .sem-card h3 { font-size: 1.5rem; margin: 0; z-index: 2; position: relative; }
+        .sem-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
+        
+        .sem-card.disabled { opacity: 0.6; cursor: not-allowed; filter: grayscale(1); }
+        .sem-card.disabled:hover { transform: none; border-color: transparent; }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            z-index: 1000; display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--bg-card); width: 90%; max-width: 600px;
+            max-height: 85vh; overflow-y: auto;
+            border-radius: var(--border-radius); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            padding: 30px; position: relative;
+            transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--accent-secondary);
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .close-modal {
+            position: absolute; top: 15px; right: 15px;
+            background: transparent; border: none; font-size: 1.5rem;
+            color: var(--text-muted); cursor: pointer;
+        }
+        .close-modal:hover { color: var(--accent-primary); }
+
+        .modal-header { text-align: center; margin-bottom: 25px; }
+        .modal-header h2 { color: var(--accent-primary); margin-bottom: 5px; }
+
+        /* Syllabus Button */
+        .syllabus-btn {
+            display: block; width: 100%; padding: 15px;
+            background: var(--accent-primary); color: #fff;
+            text-align: center; border-radius: 10px; font-weight: bold;
+            margin-bottom: 20px; text-decoration: none; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .syllabus-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        /* Subject List */
+        .subject-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .subject-item {
+            background: rgba(255,255,255,0.5); padding: 15px;
+            border-radius: 10px; border-left: 4px solid var(--accent-primary);
+            cursor: pointer; font-weight: 600; color: var(--text-main);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .dark-mode .subject-item { background: rgba(0,0,0,0.3); }
+        .subject-item:hover { background: var(--accent-secondary); padding-left: 20px; }
+
+        /* Foreign Language Sub-menu */
+        .lang-submenu {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+            margin-left: 20px; border-left: 2px solid var(--text-muted);
+        }
+        .lang-submenu.open { max-height: 200px; margin-top: 10px; }
+        
+        .lang-item {
+            display: block; padding: 10px 15px; margin: 5px 0;
+            background: rgba(255,255,255,0.3); border-radius: 0 10px 10px 0;
+            cursor: pointer; font-size: 0.9rem;
+        }
+        .lang-item:hover { background: var(--accent-primary); color: white; }
+
+        /* --- ANIMATED ELEMENTS --- */
+        #anim-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .firefly { position: absolute; width: 6px; height: 6px; background: #ccff00; border-radius: 50%; box-shadow: 0 0 10px #ccff00; opacity: 0; animation: fireflyMove 20s infinite alternate; }
+        @keyframes fireflyMove { 0% { transform: translate(0,0); opacity: 0.2; } 20% { opacity: 1; } 100% { transform: translate(100px, -100px); opacity: 0.2; } }
+        .petal { position: absolute; width: 15px; height: 15px; background: #ffc1e3; border-radius: 15px 0px 15px 0px; animation: fall 10s linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+
+    </style>
+</head>
+<body class="theme-cherry">
+
+    <!-- Background Layers -->
+    <div id="bg-layer"></div>
+    <div id="anim-layer"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/bibhavdas/BTBT-SECTION-D-HUB/main/ADAMAS-UNIVERSITY-1024x423.png" alt="Adamas University Logo">
+        </div>
+        <div class="controls">
+            <a href="index.html" class="back-btn">⬅ Back to Hub</a>
+            <button class="mode-toggle" id="modeBtn" style="padding: 8px 15px; border-radius: 20px; border: 2px solid var(--accent-primary); background: rgba(255,255,255,0.2); cursor: pointer;" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <div class="disclaimer-banner">
+        <h2>Community Study Hub</h2>
+        <p>These are community shared notes. No teachers are here. Use them as a reference to aid your studies.</p>
+    </div>
+
+    <div class="semester-grid">
+        <div class="sem-card" onclick="openSemester(1)">
+            <h3>First Semester</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">(Click to Open)</p>
+        </div>
+        <div class="sem-card disabled">
+            <h3>Second Semester</h3>
+        </div>
+        <div class="sem-card disabled">
+            <h3>Third Semester</h3>
+        </div>
+        <div class="sem-card disabled">
+            <h3>Fourth Semester</h3>
+        </div>
+    </div>
+
+    <!-- MODAL FOR 1ST SEMESTER -->
+    <div class="modal-overlay" id="sem1-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            
+            <div class="modal-header">
+                <h2>First Semester</h2>
+                <p>Select a resource below</p>
+            </div>
+
+            <!-- Syllabus Tab (No Alert) -->
+            <div class="syllabus-btn">
+                📄 View Syllabus
+            </div>
+
+            <!-- Subjects List -->
+            <div class="subject-list">
+                <!-- Maths with Active Link -->
+                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/ENGINEERING-MATHEMATICS-SEMESTER-1/')">ENGINEERING MATHEMATICS 1</div>
+                
+                <!-- Other Subjects (Empty links = No Alert) -->
+                <div class="subject-item" onclick="openResource('')">AI IN BIOTECHNOLOGY</div>
+                <div class="subject-item" onclick="openResource('')">LIFE SCIENCES</div>
+                <div class="subject-item" onclick="openResource('')">APPLIED SCIENCES</div>
+                <div class="subject-item" onclick="openResource('')">DESIGN THINKING & PROTOTYPING</div>
+                <div class="subject-item" onclick="openResource('')">INTRODUCTION TO PROGRAMMING</div>
+                
+                <!-- Foreign Languages with Expandable Menu -->
+                <div class="subject-item" onclick="toggleLanguages()">
+                    FOREIGN LANGUAGES <span style="font-size:0.8rem">▼</span>
+                </div>
+                <div class="lang-submenu" id="lang-menu">
+                    <div class="lang-item" onclick="openResource('')">🇩🇪 German</div>
+                    <div class="lang-item" onclick="openResource('')">🇪🇸 Spanish</div>
+                    <div class="lang-item" onclick="openResource('')">🇫🇷 French</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SHARED THEME LOGIC ---
+        const body = document.body;
+        const animLayer = document.getElementById('anim-layer');
+        const modeBtn = document.getElementById('modeBtn');
+
+        function init() {
+            // Load Theme and Mode from LocalStorage (set by Hub page)
+            const savedTheme = localStorage.getItem('btbt-theme') || 'theme-cherry';
+            const savedMode = localStorage.getItem('btbt-mode');
+            
+            body.className = savedTheme; // Set theme class
+            if (savedMode === 'dark') {
+                body.classList.add('dark-mode');
+                modeBtn.innerText = '☀️ Light Mode';
+            }
+
+            // Init Animations based on theme
+            if(savedTheme === 'theme-forest') createFireflies();
+            if(savedTheme === 'theme-cherry') createPetals();
+        }
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                modeBtn.innerText = '☀️ Light Mode';
+                localStorage.setItem('btbt-mode', 'dark');
+            } else {
+                modeBtn.innerText = '🌙 Dark Mode';
+                localStorage.setItem('btbt-mode', 'light');
+            }
+        }
+
+        // --- ANIMATION GENERATORS ---
+        function createFireflies() {
+            for(let i=0; i<30; i++) {
+                let div = document.createElement('div');
+                div.className = 'firefly';
+                div.style.left = Math.random() * 100 + '%';
+                div.style.top = Math.random() * 100 + '%';
+                div.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                div.style.animationDelay = Math.random() * 5 + 's';
+                animLayer.appendChild(div);
+            }
+        }
+        function createPetals() {
+            for(let i=0; i<20; i++) {
+                let div = document.createElement('div');
+                div.className = 'petal';
+                div.style.left = Math.random() * 100 + '%';
+                div.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                div.style.animationDelay = Math.random() * 5 + 's';
+                animLayer.appendChild(div);
+            }
+        }
+
+        // --- MODAL & SUBJECT LOGIC ---
+
+        function openSemester(sem) {
+            if (sem === 1) {
+                document.getElementById('sem1-modal').classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('sem1-modal').classList.remove('active');
+            document.getElementById('lang-menu').classList.remove('open');
+        }
+
+        document.getElementById('sem1-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        function toggleLanguages() {
+            const menu = document.getElementById('lang-menu');
+            menu.classList.toggle('open');
+        }
+
+        // UPDATED: Now accepts a URL and only opens if URL exists. 
+        // No alert() messages.
+        function openResource(url) {
+            if (url && url.length > 0) {
+                window.open(url, '_blank');
+            }
+            // If url is empty, do nothing.
+        }
+
+        init();
+    </script>
+</body>
+</html>
