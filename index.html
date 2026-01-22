@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADAMAS University HUB - BTBT Section D</title>
     <style>
-        /* --- CSS VARIABLES & THEMES --- */
+
         :root {
-            /* Defaults (Light Mode Base) */
+
             --bg-body: #f4f4f9;
             --bg-card: rgba(255, 255, 255, 0.85);
             --text-main: #333333;
@@ -20,7 +20,6 @@
             --backdrop-blur: 12px;
         }
 
-        /* Dark Mode Overrides */
         body.dark-mode {
             --bg-body: #121212;
             --bg-card: rgba(30, 30, 30, 0.85);
@@ -29,7 +28,6 @@
             --shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
 
-        /* --- THEME PALETTES --- */
         body.theme-cherry { --accent-primary: #d81b60; --accent-secondary: #fce4ec; }
         body.theme-cherry.dark-mode { --accent-primary: #ff4081; --accent-secondary: #880e4f; }
         body.theme-forest { --accent-primary: #4caf50; --accent-secondary: #e8f5e9; }
@@ -45,7 +43,6 @@
         body.theme-medieval { --accent-primary: #8d6e63; --accent-secondary: #efebe9; --font-main: 'Palatino Linotype', serif; }
         body.theme-medieval.dark-mode { --accent-primary: #d7ccc8; --accent-secondary: #3e2723; }
 
-        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; transition: color 0.3s, background-color 0.3s, border-color 0.3s; }
         
         body {
@@ -58,22 +55,20 @@
             overflow-x: hidden; position: relative;
         }
 
-        /* --- BACKGROUND & ANIMATIONS --- */
         #bg-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2; overflow: hidden; pointer-events: none;
             background-size: cover; background-position: center;
             background-attachment: fixed; transition: opacity 0.5s ease;
         }
-        
-        /* Background Images */
-        body.theme-space #bg-layer { background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGlnZHp1cDJxMHI1NW5jaHJ1N2Qxc21oOWdtYTE0MG10dG5wZmxwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/D35fOVm9gSQ91icJeR/giphy.gif'); }
-        body.theme-ocean #bg-layer { background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWIxdnNlMjBscGl5OTU2NXlyZmVwejJ2d3hpZG1nZTFldWgyeXJxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPprajCN0pYyhvG/giphy.gif'); }
+
+        body.theme-space #bg-layer { background-image: url('https:
+        body.theme-ocean #bg-layer { background-image: url('https:
         body.theme-ocean.dark-mode #bg-layer { filter: brightness(0.7); }
-        body.theme-forest #bg-layer { background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXJqcnBxbW8zbmtkeHhwYTM1c2U1MnVydTFnM2hlNzZjZW45d3B3YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RoFXqXWN639Qs/giphy.gif'); filter: brightness(0.8); }
-        body.theme-japanese #bg-layer { background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop'); }
-        body.theme-medieval #bg-layer { background-image: url('https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=2000&auto=format&fit=crop'); filter: sepia(0.3) contrast(1.1); }
-        body.theme-cherry #bg-layer { background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop'); }
+        body.theme-forest #bg-layer { background-image: url('https:
+        body.theme-japanese #bg-layer { background-image: url('https:
+        body.theme-medieval #bg-layer { background-image: url('https:
+        body.theme-cherry #bg-layer { background-image: url('https:
         body.theme-sun #bg-layer { background-color: #050505; background-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 230, 1) 0%, rgba(255, 215, 0, 0.8) 10%, rgba(255, 140, 0, 0.4) 20%, rgba(0, 0, 0, 0) 60%); }
 
         #anim-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
@@ -85,7 +80,7 @@
         .cloud { position: absolute; background: rgba(255,255,255,0.6); border-radius: 50px; animation: drift 20s linear infinite; display: none; filter: blur(5px); }
         .cloud::after { content: ''; position: absolute; top: -20px; left: 15px; width: 50px; height: 50px; background: inherit; border-radius: 50%; }
         body.theme-ocean .cloud { display: block; }
-        .wave { position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.3" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>'); background-size: cover; display: none; animation: waveMove 10s ease-in-out infinite alternate; }
+        .wave { position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http:
         body.theme-ocean .wave { display: block; }
         @keyframes drift { from { left: -150px; } to { left: 100%; } }
         @keyframes waveMove { from { transform: scaleY(1); } to { transform: scaleY(1.1); } }
@@ -102,7 +97,6 @@
         body.theme-forest .firefly { display: block; opacity: 1; }
         @keyframes fireflyMove { 0% { transform: translate(0,0); opacity: 0.2; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(100px, -100px); opacity: 0.2; } }
 
-        /* --- HEADER --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--bg-card); backdrop-filter: blur(var(--backdrop-blur)); -webkit-backdrop-filter: blur(var(--backdrop-blur)); box-shadow: var(--shadow); flex-wrap: wrap; gap: 15px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo-container img { max-height: 60px; width: auto; object-fit: contain; }
         .controls { display: flex; gap: 15px; align-items: center; }
@@ -111,25 +105,11 @@
         button.audio-toggle { display: none; font-size: 1.2rem; padding: 5px 10px; }
         body.theme-forest button.audio-toggle { display: inline-block; }
 
-        /* --- CONTENT --- */
-        .hero { text-align: center; padding: 60px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-        
-        .hero-box {
-            background-color: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            -webkit-backdrop-filter: blur(var(--backdrop-blur));
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            display: inline-block;
-            max-width: 100%;
-        }
+        .hero { text-align: center; padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero h1 { font-size: 3rem; color: var(--accent-primary); margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); background: var(--bg-card); display: inline-block; padding: 10px 20px; border-radius: 10px; backdrop-filter: blur(5px); }
+        .hero p { font-size: 1.2rem; line-height: 1.6; background: var(--bg-card); padding: 15px; border-radius: 10px; box-shadow: var(--shadow); display: inline-block; }
+        .disclaimer { font-size: 0.9rem; color: var(--text-main); margin-top: 20px; font-style: italic; background-color: var(--bg-card); backdrop-filter: blur(var(--backdrop-blur)); -webkit-backdrop-filter: blur(var(--backdrop-blur)); padding: 15px; border-radius: 10px; box-shadow: var(--shadow); display: inline-block; }
 
-        .hero h1 { font-size: 3rem; color: var(--accent-primary); margin: 0 0 15px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .hero p { font-size: 1.2rem; line-height: 1.6; margin: 10px 0; color: var(--text-muted); }
-        .disclaimer { font-size: 0.9rem; color: var(--text-main); margin-top: 15px; font-style: italic; opacity: 0.8; }
-
-        /* --- CARDS --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px 5%; margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
         .card { background-color: var(--bg-card); backdrop-filter: blur(var(--backdrop-blur)); -webkit-backdrop-filter: blur(var(--backdrop-blur)); border-radius: var(--border-radius); box-shadow: var(--shadow); overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; border-top: 5px solid var(--accent-primary); display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
@@ -139,23 +119,21 @@
         .card p { margin: 0; color: var(--text-muted); }
         .card.disabled { opacity: 0.7; cursor: not-allowed; filter: grayscale(0.8); }
 
-        /* --- FOOTER --- */
         footer { text-align: center; padding: 20px; background-color: var(--bg-card); backdrop-filter: blur(var(--backdrop-blur)); color: var(--text-muted); margin-top: auto; position: relative; z-index: 10; }
 
-        /* --- ICONS --- */
         .icon-gallery::before { content: "📷"; }
         .icon-study::before { content: "📚"; }
         .icon-chat::before { content: "💬"; }
         .icon-video::before { content: "▶️"; }
 
-        /* --- CHAT MODAL STYLES --- */
         #chat-modal {
             position: fixed; bottom: 80px; right: 20px; width: 350px; height: 500px;
             background: var(--bg-card); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.2);
             z-index: 1000;
-            transform: scale(0); /* Hidden by default */
+            transform: scale(0); 
+
             transform-origin: bottom right;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -167,44 +145,15 @@
         .message.my-msg { align-self: flex-end; background: var(--accent-primary); color: white; border-bottom-right-radius: 2px; }
         .message.other-msg { align-self: flex-start; background: rgba(0,0,0,0.05); color: var(--text-main); border-bottom-left-radius: 2px; border: 1px solid rgba(0,0,0,0.1); }
         body.dark-mode .message.other-msg { background: rgba(255,255,255,0.1); color: var(--text-main); }
-        .msg-author { font-size: 0.7rem; opacity: 0.7; margin-bottom: 2px; display: block; font-weight: bold;}
-        
-        .chat-input-area { padding: 10px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; gap: 8px; }
-        /* Name input styling */
-        #nameInput {
-            width: 80px;
-            padding: 10px;
-            border-radius: 20px;
-            border: 2px solid var(--accent-secondary);
-            background: rgba(255,255,255,0.7);
-            color: var(--text-main);
-            font-size: 0.8rem;
-            text-align: center;
-        }
+        .msg-author { font-size: 0.7rem; opacity: 0.7; margin-bottom: 2px; display: block; }
+        .chat-input-area { padding: 10px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; gap: 10px; }
         #msgInput { flex-grow: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; background: rgba(255,255,255,0.5); color: var(--text-main); }
-        #sendBtn { background: var(--accent-primary); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; transition: transform 0.2s; flex-shrink: 0; }
+        #sendBtn { background: var(--accent-primary); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; transition: transform 0.2s; }
         #sendBtn:hover { transform: scale(1.1); }
-
-        /* =========================================
-           MOBILE RESPONSIVE VIEW
-           ========================================= */
-        @media screen and (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 15px 10px; }
-            .controls { width: 100%; justify-content: center; flex-wrap: wrap; }
-            .hero { padding: 30px 15px; }
-            .hero-box { padding: 20px; }
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 1rem; }
-            .grid-container { grid-template-columns: 1fr; gap: 25px; padding: 10px 20px 40px 20px; }
-            #chat-modal { width: 100%; height: 75vh; right: 0; bottom: 0; border-radius: 20px 20px 0 0; transform-origin: bottom center; }
-            #chat-modal { transform: translateY(100%); }
-            #chat-modal.active { transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="theme-cherry">
 
-    <!-- Background Layers -->
     <div id="bg-layer"></div>
     <div id="anim-layer">
         <div class="moon"></div>
@@ -215,14 +164,13 @@
         <div class="cherry-corner corner-br">🌸</div>
     </div>
 
-    <!-- Audio Element -->
     <audio id="forest-audio" loop>
-        <source src="https://actions.google.com/sounds/v1/ambiences/jungle_atmosphere_afternoon.ogg" type="audio/ogg">
+        <source src="https:
     </audio>
 
     <header>
         <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/bibhavdas/BTBT-SECTION-D-HUB/main/ADAMAS-UNIVERSITY-1024x423.png" alt="Adamas University Logo">
+            <img src="https:
         </div>
         <div class="controls">
             <button class="audio-toggle" id="audioBtn" onclick="toggleAudio()" title="Mute/Unmute">🔊</button>
@@ -240,15 +188,13 @@
     </header>
 
     <div class="hero">
-        <div class="hero-box">
-            <h1>Welcome to BTBT Hub</h1>
-            <p>You can find many of your study materials in here, a photo gallery and a chat spot.</p>
-            <p class="disclaimer">This website is not managed by Adamas University. It is a community project of BTBT section D.</p>
-        </div>
+        <h1>Welcome to BTBT Hub</h1>
+        <p>You can find many of your study materials in here, a photo gallery and a chat spot.</p>
+        <p class="disclaimer">This website is not managed by Adamas University. It is a community project of BTBT section D.</p>
     </div>
 
     <div class="grid-container">
-        <!-- Card 1 -->
+
         <div class="card" onclick="alert('Photo Gallery coming soon!')">
             <div class="card-img icon-gallery"></div>
             <div class="card-content">
@@ -257,16 +203,14 @@
             </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card" onclick="window.location.href='study.html'">
-            <div class="card-img icon-study"></div>
-            <div class="card-content">
-                <h3>Study Materials</h3>
-                <p>Notes, PDFs, and resources.</p>
-            </div>
-        </div>
+<div class="card" onclick="window.location.href='study.html'">
+    <div class="card-img icon-study"></div>
+    <div class="card-content">
+        <h3>Study Materials</h3>
+        <p>Notes, PDFs, and resources.</p>
+    </div>
+</div>
 
-        <!-- Card 3 -->
         <div class="card" onclick="toggleChat()">
             <div class="card-img icon-chat"></div>
             <div class="card-content">
@@ -275,7 +219,6 @@
             </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="card disabled">
             <div class="card-img icon-video"></div>
             <div class="card-content">
@@ -285,7 +228,6 @@
         </div>
     </div>
 
-    <!-- CHAT MODAL -->
     <div id="chat-modal">
         <div class="chat-header">
             <span>💬 Class Chat</span>
@@ -297,21 +239,20 @@
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="nameInput" placeholder="Name" title="Change your name here">
             <input type="text" id="msgInput" placeholder="Type a message..." onkeypress="handleEnter(event)">
             <button id="sendBtn" onclick="sendMessage()">➤</button>
         </div>
     </div>
 
     <footer>
-        &copy; 2025 BTBT Section D Community Project
+        &copy; 2023 BTBT Section D Community Project
     </footer>
 
-    <!-- SCRIPT (Type Module for Firebase) -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, setDoc, doc, query, orderBy, onSnapshot, serverTimestamp } 
-        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        
+        import { initializeApp } from "https:
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } 
+        from "https:
 
         const firebaseConfig = {
             apiKey: "AIzaSyCJjujcqpefUQ9w937fXL4NFLGvC_tVPHs",
@@ -326,27 +267,14 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const messagesRef = collection(db, "btbt-messages");
-        const usersRef = collection(db, "btbt-users");
 
-        // --- IDENTITY MANAGEMENT ---
-        let myUid = localStorage.getItem('btbt_uid');
-        if (!myUid) {
-            myUid = 'user_' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('btbt_uid', myUid);
-        }
-
-        let myName = localStorage.getItem('btbt_username') || "Anonymous";
-        document.getElementById('nameInput').value = myName;
-
-        // --- GLOBAL VARIABLES & FUNCTIONS ---
         const body = document.body;
         const themeSelector = document.getElementById('themeSelector');
         const modeBtn = document.getElementById('modeBtn');
         const audio = document.getElementById('forest-audio');
         const audioBtn = document.getElementById('audioBtn');
         const animLayer = document.getElementById('anim-layer');
-        
-        let userNamesCache = {};
+        let isAudioPlaying = false;
 
         function createFireflies() {
             const oldFireflies = document.querySelectorAll('.firefly');
@@ -378,19 +306,24 @@
         window.changeTheme = function(themeName) {
             body.className = themeName + (body.classList.contains('dark-mode') ? ' dark-mode' : '');
             localStorage.setItem('btbt-theme', themeName);
-            
+
             if(themeName === 'theme-forest') {
                 createFireflies(); 
                 audioBtn.style.display = 'inline-block';
+                
                 audio.volume = 0.4;
-                audio.play().catch(() => {});
+                audio.play().then(() => {
+                    audioBtn.innerText = '🔊';
+                }).catch(() => {
+                    audioBtn.innerText = '🔇';
+                });
             } else {
                 const flies = document.querySelectorAll('.firefly');
                 flies.forEach(el => el.remove());
                 audio.pause();
                 audioBtn.style.display = 'none';
             }
-            
+
             if(themeName === 'theme-cherry') createPetals();
             else {
                 const petals = document.querySelectorAll('.petal');
@@ -409,6 +342,12 @@
             else { audio.pause(); audioBtn.innerText = '🔇'; }
         };
 
+        let username = localStorage.getItem('btbt_username');
+        if (!username) {
+            username = prompt("Welcome to Section D Hub! What is your name?") || "Anonymous";
+            localStorage.setItem('btbt_username', username);
+        }
+
         window.toggleChat = function() {
             const modal = document.getElementById('chat-modal');
             modal.classList.toggle('active');
@@ -418,47 +357,21 @@
             }
         }
 
-        // --- NEW CHAT LOGIC ---
-
-        onSnapshot(usersRef, (snapshot) => {
-            snapshot.forEach((doc) => {
-                userNamesCache[doc.id] = doc.data().name;
-            });
-            updateDisplayedNames();
-        });
-
-        function updateDisplayedNames() {
-            const authors = document.querySelectorAll('.msg-author');
-            authors.forEach(span => {
-                const uid = span.getAttribute('data-uid');
-                if (uid && userNamesCache[uid]) {
-                    span.innerText = userNamesCache[uid];
-                }
-            });
-        }
-
         window.sendMessage = async function() {
             const input = document.getElementById('msgInput');
-            const nameInput = document.getElementById('nameInput');
             const text = input.value.trim();
-            const currentName = nameInput.value.trim() || "Anonymous";
-
+            
             if (text.length > 0) {
                 try {
-                    await setDoc(doc(db, "btbt-users", myUid), {
-                        name: currentName
-                    });
-                    
-                    localStorage.setItem('btbt_username', currentName);
-
                     await addDoc(messagesRef, {
                         text: text,
-                        senderId: myUid,
+                        user: username,
                         createdAt: serverTimestamp()
                     });
                     input.value = "";
                 } catch (e) {
                     console.error("Error sending: ", e);
+                    alert("Message failed. Did you fix the Firebase Rules?");
                 }
             }
         }
@@ -471,35 +384,15 @@
         onSnapshot(q, (snapshot) => {
             const chatBox = document.getElementById('chat-messages');
             chatBox.innerHTML = "";
+            
             snapshot.forEach((doc) => {
                 const data = doc.data();
-                
-                // Identify sender (Self vs Others)
-                // New system uses senderId, Old system has no senderId (so isMe is always false for old messages)
-                const isMe = data.senderId === myUid; 
-
-                // --- NAME LOOKUP LOGIC (FIXED) ---
-                let displayName;
-                
-                // 1. Try New System: Look up name by senderId in cache
-                if (data.senderId && userNamesCache[data.senderId]) {
-                    displayName = userNamesCache[data.senderId];
-                } 
-                // 2. Try Old System: Look for direct 'user' field in message
-                else if (data.user) {
-                    displayName = data.user;
-                } 
-                // 3. Fallback
-                else {
-                    displayName = "Anonymous";
-                }
-
                 const msgDiv = document.createElement('div');
-                msgDiv.className = `message ${isMe ? 'my-msg' : 'other-msg'}`;
+                const isMe = data.user === username;
                 
-                // Add data-uid for dynamic updates on new messages
+                msgDiv.className = `message ${isMe ? 'my-msg' : 'other-msg'}`;
                 msgDiv.innerHTML = `
-                    <span class="msg-author" data-uid="${data.senderId || ''}">${displayName}</span>
+                    <span class="msg-author">${data.user}</span>
                     ${data.text}
                 `;
                 chatBox.appendChild(msgDiv);
@@ -509,8 +402,10 @@
 
         const savedTheme = localStorage.getItem('btbt-theme') || 'theme-cherry';
         const savedMode = localStorage.getItem('btbt-mode');
+        
         themeSelector.value = savedTheme;
         window.changeTheme(savedTheme);
+
         if (savedMode === 'dark') {
             body.classList.add('dark-mode');
             modeBtn.innerText = '☀️ Light Mode';
