@@ -1,415 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADAMAS University - Study Materials</title>
-    <style>
-        /* --- COPYING CORE STYLES FROM HUB FOR CONSISTENCY --- */
-        :root {
-            --bg-body: #f4f4f9;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --text-main: #333333;
-            --text-muted: #666666;
-            --shadow: 0 8px 32px rgba(0,0,0,0.1);
-            --border-radius: 16px;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --accent-primary: #d63384;
-            --accent-secondary: #f8d7da;
-            --backdrop-blur: 12px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Materials - Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-        body.dark-mode {
-            --bg-body: #121212;
-            --bg-card: rgba(30, 30, 30, 0.85);
-            --text-main: #e0e0e0;
-            --text-muted: #cccccc;
-            --shadow: 0 8px 32px rgba(0,0,0,0.5);
-        }
+<style>
+  html, body {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    scroll-behavior: smooth; 
+  }
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; 
+  }
 
-        /* THEMES */
-        body.theme-cherry { --accent-primary: #d81b60; --accent-secondary: #fce4ec; }
-        body.theme-cherry.dark-mode { --accent-primary: #ff4081; --accent-secondary: #880e4f; }
-        body.theme-forest { --accent-primary: #4caf50; --accent-secondary: #e8f5e9; }
-        body.theme-forest.dark-mode { --accent-primary: #81c784; --accent-secondary: #1b5e20; }
-        body.theme-ocean { --accent-primary: #0277bd; --accent-secondary: #e1f5fe; }
-        body.theme-ocean.dark-mode { --accent-primary: #4fc3f7; --accent-secondary: #01579b; }
-        body.theme-sun { --accent-primary: #ffeb3b; --accent-secondary: #fff9c4; --text-main: #333; }
-        body.theme-sun.dark-mode { --accent-primary: #ffc107; --accent-secondary: #f57f17; --text-main: #eee; }
-        body.theme-space { --accent-primary: #7c4dff; --accent-secondary: #ede7f6; }
-        body.theme-space.dark-mode { --accent-primary: #b388ff; --accent-secondary: #311b92; }
-        body.theme-japanese { --accent-primary: #b71c1c; --accent-secondary: #ffebee; --font-main: 'Noto Serif JP', serif; }
-        body.theme-japanese.dark-mode { --accent-primary: #ff5252; --accent-secondary: #3e0a0a; }
-        body.theme-medieval { --accent-primary: #8d6e63; --accent-secondary: #efebe9; --font-main: 'Palatino Linotype', serif; }
-        body.theme-medieval.dark-mode { --accent-primary: #d7ccc8; --accent-secondary: #3e2723; }
+  /* Core Palette */
+  :root {
+    --bg-canvas: #0a0a0a; 
+    --bg-image: none;
+    --accent-1: #3b0b0b; 
+    --accent-2: #8b1c1c; 
+    --accent-3: #d92525; 
+    --text-dark: #f4f0eb;
+    --bg-filter: none;
+  }
 
-        * { box-sizing: border-box; transition: all 0.3s ease; }
-        
-        body {
-            margin: 0; padding: 0;
-            font-family: var(--font-main);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex; flex-direction: column;
-            overflow-x: hidden;
-        }
+  body.theme-space { 
+    --bg-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGlnZHp1cDJxMHI1NW5jaHJ1N2Qxc21oOWdtYTE0MG10dG5wZmxwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/D35fOVm9gSQ91icJeR/giphy.gif'); 
+    --accent-1: #150030; --accent-2: #3a0ca3; --accent-3: #7209b7; 
+  }
+  body.theme-ocean { 
+    --bg-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWIxdnNlMjBscGl5OTU2NXlyZmVwejJ2d3hpZG1nZTFldWgyeXJxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPprajCN0pYyhvG/giphy.gif'); 
+    --accent-1: #001d3d; --accent-2: #003566; --accent-3: #0077b6; 
+  }
+  body.theme-forest { 
+    --bg-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXJqcnBxbW8zbmtkeHhwYTM1c2U1MnVydTFnM2hlNzZjZW45d3B3YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RoFXqXWN639Qs/giphy.gif'); 
+    --accent-1: #142103; --accent-2: #283618; --accent-3: #606c38; 
+  }
+  body.theme-japanese { 
+    --bg-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop'); 
+    --accent-1: #370617; --accent-2: #6a040f; --accent-3: #9d0208; 
+  }
+  body.theme-medieval { 
+    --bg-image: url('https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=2000&auto=format&fit=crop'); 
+    --bg-filter: sepia(0.3) contrast(1.1); 
+    --accent-1: #2b0b0b; --accent-2: #520b0b; --accent-3: #780000; 
+  }
+  body.theme-cherry { 
+    --bg-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop'); 
+    --accent-1: #8f3448; --accent-2: #c44560; --accent-3: #e56b6f; 
+  }
+  body.theme-sun { 
+    --bg-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 230, 1) 0%, rgba(255, 215, 0, 0.8) 10%, rgba(255, 140, 0, 0.4) 20%, rgba(0, 0, 0, 0) 60%); 
+    --accent-1: #9d0208; --accent-2: #dc2f02; --accent-3: #f48c06; 
+  }
 
-        /* BACKGROUND LAYERS */
-        #bg-layer {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2; background-size: cover; background-position: center;
-            background-attachment: fixed; transition: opacity 0.5s ease;
-        }
-        
-        /* Inserted URLs for Backgrounds */
-        body.theme-space #bg-layer { background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGlnZHp1cDJxMHI1NW5jaHJ1N2Qxc21oOWdtYTE0MG10dG5wZmxwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/D35fOVm9gSQ91icJeR/giphy.gif'); }
-        body.theme-ocean #bg-layer { background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWIxdnNlMjBscGl5OTU2NXlyZmVwejJ2d3hpZG1nZTFldWgyeXJxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPprajCN0pYyhvG/giphy.gif'); }
-        body.theme-ocean.dark-mode #bg-layer { filter: brightness(0.7); }
-        body.theme-forest #bg-layer { background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXJqcnBxbW8zbmtkeHhwYTM1c2U1MnVydTFnM2hlNzZjZW45d3B3YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RoFXqXWN639Qs/giphy.gif'); filter: brightness(0.8); }
-        body.theme-japanese #bg-layer { background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop'); }
-        body.theme-medieval #bg-layer { background-image: url('https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=2000&auto=format&fit=crop'); filter: sepia(0.3) contrast(1.1); }
-        body.theme-cherry #bg-layer { background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop'); }
-        body.theme-sun #bg-layer { background-color: #050505; background-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 230, 1) 0%, rgba(255, 215, 0, 0.8) 10%, rgba(255, 140, 0, 0.4) 20%, rgba(0, 0, 0, 0) 60%); }
+  body {
+    background-color: var(--bg-canvas);
+    margin: 0; padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+  }
 
-        /* HEADER */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background-color: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100;
-        }
-        .logo-container img { max-height: 50px; width: auto; }
-        .controls { display: flex; gap: 15px; }
-        .back-btn {
-            text-decoration: none; font-weight: bold; color: var(--text-main);
-            padding: 8px 15px; border-radius: 20px; border: 2px solid var(--accent-primary);
-            background: rgba(255,255,255,0.2);
-        }
-        .back-btn:hover { background: var(--accent-primary); color: #fff; }
+  /* --- HERO SECTION --- */
+  .hero-section {
+    position: relative; width: 100vw; height: 45vh;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    padding-bottom: 40px; box-sizing: border-box; overflow: hidden;
+    border-bottom: 4px solid var(--accent-3);
+  }
 
-        /* --- STUDY MATERIAL SPECIFIC STYLES --- */
-        
-        .disclaimer-banner {
-            max-width: 800px; margin: 40px auto 20px;
-            text-align: center; padding: 20px;
-            background: var(--bg-card); border-radius: var(--border-radius);
-            box-shadow: var(--shadow); backdrop-filter: blur(var(--backdrop-blur));
-            border-left: 5px solid var(--accent-primary);
-        }
-        .disclaimer-banner h2 { margin: 0 0 10px 0; color: var(--accent-primary); }
-        .disclaimer-banner p { margin: 0; font-style: italic; color: var(--text-muted); }
+  .hero-bg {
+    position: absolute; inset: 0; background-image: var(--bg-image);
+    background-size: cover; background-position: center; filter: var(--bg-filter); z-index: 1;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background-color: rgba(0, 0, 0, 0.6); 
+    background-image: radial-gradient(transparent 1px, rgba(0, 0, 0, 0.85) 5px);
+    background-size: 8px 8px;
+  }
 
-        .semester-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; padding: 20px 5%; max-width: 1200px; margin: 0 auto;
-        }
+  header {
+    position: absolute; top: 0; left: 0; width: 100%;
+    padding: 25px 5%; display: flex; justify-content: space-between;
+    z-index: 10; box-sizing: border-box;
+  }
 
-        .sem-card {
-            background: var(--bg-card); padding: 40px 20px;
-            text-align: center; border-radius: var(--border-radius);
-            box-shadow: var(--shadow); cursor: pointer;
-            border: 2px solid transparent; position: relative;
-            overflow: hidden;
-        }
-        
-        .sem-card h3 { font-size: 1.5rem; margin: 0; z-index: 2; position: relative; }
-        .sem-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
-        
-        .sem-card.disabled { opacity: 0.6; cursor: not-allowed; filter: grayscale(1); }
-        .sem-card.disabled:hover { transform: none; border-color: transparent; }
+  .back-btn {
+    text-decoration: none; font-weight: 700; color: #fff;
+    padding: 10px 25px; border-radius: 30px; 
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;
+    transition: all 0.3s ease;
+  }
+  .back-btn:hover { background: #fff; color: #000; border-color: #fff; }
 
-        /* --- MODAL STYLES --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-            z-index: 1000; display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        
-        .modal-overlay.active { display: flex; opacity: 1; }
+  .massive-title {
+    position: relative; z-index: 10;
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(3rem, 8vw, 7rem); text-transform: uppercase; margin: 0;
+    line-height: 0.9; text-align: center; text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    letter-spacing: -2px;
+  }
 
-        .modal-content {
-            background: var(--bg-card); width: 90%; max-width: 600px;
-            max-height: 85vh; overflow-y: auto;
-            border-radius: var(--border-radius); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            padding: 30px; position: relative;
-            transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid var(--accent-secondary);
-        }
+  /* --- MAIN CONTENT & BLOCKY UI --- */
+  .content-section {
+    padding: 60px 5%; max-width: 1400px; margin: 0 auto;
+  }
 
-        .modal-overlay.active .modal-content { transform: scale(1); }
+  .semester-controls {
+    display: flex; gap: 15px; margin-bottom: 50px;
+    flex-wrap: wrap; justify-content: center;
+  }
 
-        .close-modal {
-            position: absolute; top: 15px; right: 15px;
-            background: transparent; border: none; font-size: 1.5rem;
-            color: var(--text-muted); cursor: pointer;
-        }
-        .close-modal:hover { color: var(--accent-primary); }
+  .sem-tab {
+    background: transparent; border: 2px solid #333; color: #888;
+    padding: 15px 30px; font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+    cursor: pointer; border-radius: 8px; transition: all 0.3s ease;
+  }
+  .sem-tab:hover { border-color: #fff; color: #fff; }
+  .sem-tab.active {
+    background: var(--accent-3); border-color: var(--accent-3); color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  }
+  .sem-tab.locked { cursor: not-allowed; opacity: 0.4; }
 
-        .modal-header { text-align: center; margin-bottom: 25px; }
-        .modal-header h2 { color: var(--accent-primary); margin-bottom: 5px; }
+  .subject-grid {
+    display: none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px; animation: fadeIn 0.4s ease-out;
+  }
+  .subject-grid.active { display: grid; }
 
-        /* Syllabus Button */
-        .syllabus-btn {
-            display: block; width: 100%; padding: 15px;
-            background: var(--accent-primary); color: #fff;
-            text-align: center; border-radius: 10px; font-weight: bold;
-            margin-bottom: 20px; text-decoration: none; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .syllabus-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-        /* Subject List */
-        .subject-list { display: flex; flex-direction: column; gap: 10px; }
+  /* Subject Cards */
+  .subject-block {
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 35px; min-height: 260px; border-radius: 20px;
+    text-decoration: none; color: #fff; position: relative; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .subject-block:hover {
+    transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
 
-        .subject-item {
-            background: rgba(255,255,255,0.5); padding: 15px;
-            border-radius: 10px; border-left: 4px solid var(--accent-primary);
-            cursor: pointer; font-weight: 600; color: var(--text-main);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .dark-mode .subject-item { background: rgba(0,0,0,0.3); }
-        .subject-item:hover { background: var(--accent-secondary); padding-left: 20px; }
+  /* Color Variations */
+  .c-1 { background: var(--accent-1); }
+  .c-2 { background: var(--accent-2); }
+  .c-3 { background: var(--accent-3); }
 
-        /* Foreign Language Sub-menu */
-        .lang-submenu {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-            margin-left: 20px; border-left: 2px solid var(--text-muted);
-        }
-        .lang-submenu.open { max-height: 200px; margin-top: 10px; }
-        
-        .lang-item {
-            display: block; padding: 10px 15px; margin: 5px 0;
-            background: rgba(255,255,255,0.3); border-radius: 0 10px 10px 0;
-            cursor: pointer; font-size: 0.9rem;
-        }
-        .lang-item:hover { background: var(--accent-primary); color: white; }
+  /* UPDATED: REDUCED FOG FOR CLEARER IMAGES */
+  .block-bg-img {
+    position: absolute; top: 0; right: 0;
+    width: 75%; height: 100%; object-fit: cover; object-position: center right;
+    
+    /* Increased base opacity makes the image pop significantly more */
+    opacity: 0.9; z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    
+    /* Pushed the solid portion of the mask to 40% so the fog is much less aggressive */
+    -webkit-mask-image: radial-gradient(ellipse at 85% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-image: radial-gradient(ellipse at 85% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
+  .subject-block:hover .block-bg-img {
+    transform: scale(1.05) rotate(-1deg); opacity: 1;
+  }
 
-        /* --- ANIMATED ELEMENTS --- */
-        #anim-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .firefly { position: absolute; width: 6px; height: 6px; background: #ccff00; border-radius: 50%; box-shadow: 0 0 10px #ccff00; opacity: 0; animation: fireflyMove 20s infinite alternate; }
-        @keyframes fireflyMove { 0% { transform: translate(0,0); opacity: 0.2; } 20% { opacity: 1; } 100% { transform: translate(100px, -100px); opacity: 0.2; } }
-        .petal { position: absolute; width: 15px; height: 15px; background: #ffc1e3; border-radius: 15px 0px 15px 0px; animation: fall 10s linear infinite; }
-        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+  /* Typography Layering */
+  .block-number {
+    font-size: 5rem; font-weight: 900; line-height: 1;
+    opacity: 0.2; position: absolute; top: 25px; right: 25px; z-index: 2;
+  }
+  .block-title {
+    font-family: 'Playfair Display', serif; font-size: 2rem;
+    margin: 0; z-index: 3; line-height: 1.1; position: relative;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.6); 
+  }
 
-    </style>
+  .block-action {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 30px; font-weight: 700; text-transform: uppercase;
+    font-size: 0.85rem; letter-spacing: 1px; z-index: 3; position: relative;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);
+  }
+  .block-action .arrow {
+    background: #fff; color: #000; width: 35px; height: 35px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 1.2rem; transition: transform 0.3s ease;
+  }
+  .subject-block:hover .arrow { transform: rotate(45deg); }
+
+  /* Special Blocks */
+  .syllabus-block { background: #fff; color: #111; }
+  .syllabus-block .block-action { border-top-color: rgba(0,0,0,0.1); }
+  .syllabus-block .arrow { background: #111; color: #fff; }
+  .syllabus-block .block-bg-img { opacity: 0.4; }
+
+  .span-block { grid-column: 1 / -1; }
+  .lang-buttons { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; position: relative; z-index: 3; }
+  .lang-btn {
+    background: rgba(0,0,0,0.3); color: #fff; padding: 12px 25px;
+    border-radius: 30px; text-decoration: none; font-weight: 600;
+    font-size: 0.9rem; transition: background 0.3s; backdrop-filter: blur(5px);
+  }
+  .lang-btn:hover { background: #fff; color: #000; }
+
+</style>
 </head>
-<body class="theme-cherry">
+<body class="theme-medieval">
 
-    <!-- Background Layers -->
-    <div id="bg-layer"></div>
-    <div id="anim-layer"></div>
-
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    
     <header>
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/bibhavdas/BTBT-SECTION-D-HUB/main/ADAMAS-UNIVERSITY-1024x423.png" alt="Adamas University Logo">
-        </div>
-        <div class="controls">
-            <a href="index.html" class="back-btn">⬅ Back to Hub</a>
-            <button class="mode-toggle" id="modeBtn" style="padding: 8px 15px; border-radius: 20px; border: 2px solid var(--accent-primary); background: rgba(255,255,255,0.2); cursor: pointer;" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-        </div>
+      <a href="index.html" class="back-btn">← Back to Hub</a>
     </header>
 
-    <div class="disclaimer-banner">
-        <h2>Community Study Hub</h2>
-        <p>These are community shared notes. No teachers are here. Use them as a reference to aid your studies.</p>
+    <h1 class="massive-title">Study<br>Materials</h1>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content-section">
+    
+    <div class="semester-controls">
+      <button class="sem-tab" id="tab-1" onclick="switchSemester(1)">Semester 01</button>
+      <button class="sem-tab active" id="tab-2" onclick="switchSemester(2)">Semester 02</button>
+      <button class="sem-tab locked">Semester 03</button>
+      <button class="sem-tab locked">Semester 04</button>
     </div>
 
-    <div class="semester-grid">
-        <div class="sem-card" onclick="openSemester(1)">
-            <h3>First Semester</h3>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">(Click to Open)</p>
+    <!-- SEMESTER 1 GRID -->
+    <div id="grid-sem1" class="subject-grid">
+      <a href="#" class="subject-block syllabus-block span-block">
+        <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Syllabus">
+        <span class="block-number">SYL</span>
+        <h3 class="block-title">Official Syllabus & Curriculum Structure</h3>
+        <div class="block-action"><span>Download PDF</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/ENGINEERING-MATHEMATICS-SEMESTER-1/" class="subject-block c-1" target="_blank">
+        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Math">
+        <span class="block-number">01</span><h3 class="block-title">Engineering<br>Mathematics 1</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/AI-in-Biotechnology/" class="subject-block c-2" target="_blank">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="AI Biotech">
+        <span class="block-number">02</span><h3 class="block-title">AI In<br>Biotechnology</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Applied-Science-Physics/" class="subject-block c-3" target="_blank">
+        <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Physics">
+        <span class="block-number">03</span><h3 class="block-title">Applied Sciences<br>(Physics)</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Applied-Science-Chemistry/" class="subject-block c-1" target="_blank">
+        <img src="https://images.unsplash.com/photo-1603126857599-f6e157826815?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Chemistry">
+        <span class="block-number">04</span><h3 class="block-title">Applied Sciences<br>(Chemistry)</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="#" class="subject-block c-2" target="_blank">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Design">
+        <span class="block-number">05</span><h3 class="block-title">Design Thinking<br>& Prototyping</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="#" class="subject-block c-3 span-block">
+        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Languages">
+        <h3 class="block-title" style="font-size: 1.5rem;">Foreign Languages</h3>
+        <div class="lang-buttons">
+          <div class="lang-btn">🇩🇪 German</div>
+          <div class="lang-btn">🇪🇸 Spanish</div>
+          <div class="lang-btn">🇫🇷 French</div>
         </div>
-        
-        <!-- SEMESTER 2 ENABLED -->
-        <div class="sem-card" onclick="openSemester(2)">
-            <h3>Second Semester</h3>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">(Click to Open)</p>
-        </div>
-
-        <div class="sem-card disabled">
-            <h3>Third Semester</h3>
-        </div>
-        <div class="sem-card disabled">
-            <h3>Fourth Semester</h3>
-        </div>
+      </a>
     </div>
 
-    <!-- MODAL FOR 1ST SEMESTER -->
-    <div class="modal-overlay" id="sem1-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">×</button>
-            
-            <div class="modal-header">
-                <h2>First Semester</h2>
-                <p>Select a resource below</p>
-            </div>
-
-            <div class="syllabus-btn">📄 View Syllabus</div>
-
-            <div class="subject-list">
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/ENGINEERING-MATHEMATICS-SEMESTER-1/')">ENGINEERING MATHEMATICS 1</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/AI-in-Biotechnology/')">AI IN BIOTECHNOLOGY</div>
-                <div class="subject-item" onclick="openResource('')">LIFE SCIENCES</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Applied-Science-Physics/')">APPLIED SCIENCES (PHYSICS)</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Applied-Science-Chemistry/')">APPLIED SCIENCES (CHEMISTRY)</div>
-                <div class="subject-item" onclick="openResource('')">DESIGN THINKING & PROTOTYPING</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Introduction-to-C/')">INTRODUCTION TO PROGRAMMING (Totally incomplete. Only One topic present).</div>
-                
-                <div class="subject-item" onclick="toggleLanguages('lang-menu-1')">
-                    FOREIGN LANGUAGES <span style="font-size:0.8rem">▼</span>
-                </div>
-                <div class="lang-submenu" id="lang-menu-1">
-                    <div class="lang-item" onclick="openResource('')">🇩🇪 German</div>
-                    <div class="lang-item" onclick="openResource('')">🇪🇸 Spanish</div>
-                    <div class="lang-item" onclick="openResource('')">🇫🇷 French</div>
-                </div>
-            </div>
+    <!-- SEMESTER 2 GRID -->
+    <div id="grid-sem2" class="subject-grid active">
+      <a href="#" class="subject-block syllabus-block span-block">
+        <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Syllabus">
+        <span class="block-number">SYL</span>
+        <h3 class="block-title">Official Syllabus & Curriculum Structure</h3>
+        <div class="block-action"><span>Download PDF</span><span class="arrow">→</span></div>
+      </a>
+      <a href="#" class="subject-block c-1" target="_blank">
+        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Math 2">
+        <span class="block-number">01</span><h3 class="block-title">Engineering<br>Mathematics 2</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Disruptive-Technology/" class="subject-block c-2" target="_blank">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Tech">
+        <span class="block-number">02</span><h3 class="block-title">Disruptive<br>Technology</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/ENGINEERING-MECHANICS/#" class="subject-block c-3" target="_blank">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Mechanics">
+        <span class="block-number">03</span><h3 class="block-title">Engineering<br>Mechanics</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="#" class="subject-block c-1" target="_blank">
+        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Electronics">
+        <span class="block-number">04</span><h3 class="block-title">Electronics</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Venture-Ideation/" class="subject-block c-2" target="_blank">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Venture">
+        <span class="block-number">05</span><h3 class="block-title">Venture<br>Ideation</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Environmental-Science/" class="subject-block c-3" target="_blank">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Environment">
+        <span class="block-number">06</span><h3 class="block-title">Environmental<br>Science</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/Electrical-Lab/" class="subject-block c-1" target="_blank">
+        <img src="https://images.unsplash.com/photo-1580983546522-8302f3dd022b?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Lab">
+        <span class="block-number">L1</span><h3 class="block-title">Electrical<br>Lab</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <a href="https://bibhavdas.github.io/CLL/" class="subject-block c-2" target="_blank">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="CLL">
+        <span class="block-number">L2</span><h3 class="block-title">CLL</h3>
+        <div class="block-action"><span>Explore</span><span class="arrow">→</span></div>
+      </a>
+      <div class="subject-block c-3 span-block">
+        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" class="block-bg-img" alt="Languages">
+        <h3 class="block-title" style="font-size: 1.5rem;">Foreign Languages</h3>
+        <div class="lang-buttons">
+          <a href="https://bibhavdas.github.io/German-FL/" class="lang-btn" target="_blank">🇩🇪 German</a>
+          <a href="#" class="lang-btn">🇪🇸 Spanish</a>
+          <a href="#" class="lang-btn">🇫🇷 French</a>
         </div>
+      </div>
     </div>
 
-    <!-- MODAL FOR 2ND SEMESTER -->
-    <div class="modal-overlay" id="sem2-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">×</button>
-            
-            <div class="modal-header">
-                <h2>Second Semester</h2>
-                <p>Select a resource below</p>
-            </div>
+  </div>
 
-            <div class="syllabus-btn">📄 View Syllabus</div>
+  <script>
+    // Loads theme, defaults to medieval
+    window.onload = () => {
+      const savedTheme = localStorage.getItem('hub_bg_theme') || 'theme-medieval';
+      document.body.classList.add(savedTheme);
+    };
 
-            <div class="subject-list">
-                <div class="subject-item" onclick="openResource('')">ENGINEERING MATHEMATICS 2</div>
-                
-                <div class="subject-item" onclick="window.open('https://bibhavdas.github.io/Disruptive-Technology/', '_blank')">
-                    DISRUPTIVE TECHNOLOGY
-                </div> 
-
-                <!-- MECHANICS LINK ADDED HERE -->
-                <div class="subject-item" onclick="window.open('https://bibhavdas.github.io/ENGINEERING-MECHANICS/#', '_blank')">MECHANICS</div>
-                
-                <div class="subject-item" onclick="openResource('')">ELECTRONICS</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Venture-Ideation/')">VENTURE IDEATIONS</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Electrical-Lab/')">ELECTRICAL LAB</div>
-                <div class="subject-item" onclick="openResource('')">ELECTRONICS LAB</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/Environmental-Science/')">ENVIRONMENTAL SCIENCE</div>
-                <div class="subject-item" onclick="openResource('https://bibhavdas.github.io/CLL/')">CLL</div>
-
-                <div class="subject-item" onclick="toggleLanguages('lang-menu-2')">
-                    FOREIGN LANGUAGES <span style="font-size:0.8rem">▼</span>
-                </div>
-                <div class="lang-submenu" id="lang-menu-2">
-                    <div class="lang-item" onclick="openResource('https://bibhavdas.github.io/German-FL/')">🇩🇪 German</div>
-                    <div class="lang-item" onclick="openResource('')">🇪🇸 Spanish</div>
-                    <div class="lang-item" onclick="openResource('')">🇫🇷 French</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- SHARED THEME LOGIC ---
-        const body = document.body;
-        const animLayer = document.getElementById('anim-layer');
-        const modeBtn = document.getElementById('modeBtn');
-
-        function init() {
-            // Load Theme and Mode from LocalStorage (set by Hub page)
-            const savedTheme = localStorage.getItem('btbt-theme') || 'theme-cherry';
-            const savedMode = localStorage.getItem('btbt-mode');
-            
-            body.className = savedTheme; // Set theme class
-            if (savedMode === 'dark') {
-                body.classList.add('dark-mode');
-                modeBtn.innerText = '☀️ Light Mode';
-            }
-
-            // Init Animations based on theme
-            if(savedTheme === 'theme-forest') createFireflies();
-            if(savedTheme === 'theme-cherry') createPetals();
-        }
-
-        function toggleDarkMode() {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                modeBtn.innerText = '☀️ Light Mode';
-                localStorage.setItem('btbt-mode', 'dark');
-            } else {
-                modeBtn.innerText = '🌙 Dark Mode';
-                localStorage.setItem('btbt-mode', 'light');
-            }
-        }
-
-        // --- ANIMATION GENERATORS ---
-        function createFireflies() {
-            for(let i=0; i<30; i++) {
-                let div = document.createElement('div');
-                div.className = 'firefly';
-                div.style.left = Math.random() * 100 + '%';
-                div.style.top = Math.random() * 100 + '%';
-                div.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                div.style.animationDelay = Math.random() * 5 + 's';
-                animLayer.appendChild(div);
-            }
-        }
-        function createPetals() {
-            for(let i=0; i<20; i++) {
-                let div = document.createElement('div');
-                div.className = 'petal';
-                div.style.left = Math.random() * 100 + '%';
-                div.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                div.style.animationDelay = Math.random() * 5 + 's';
-                animLayer.appendChild(div);
-            }
-        }
-
-        // --- MODAL & SUBJECT LOGIC ---
-
-        function openSemester(sem) {
-            if (sem === 1) {
-                document.getElementById('sem1-modal').classList.add('active');
-            }
-            if (sem === 2) {
-                document.getElementById('sem2-modal').classList.add('active');
-            }
-        }
-
-        function closeModal() {
-            // Remove 'active' from all modals
-            const overlays = document.querySelectorAll('.modal-overlay');
-            overlays.forEach(overlay => overlay.classList.remove('active'));
-
-            // Close all language menus
-            const submenus = document.querySelectorAll('.lang-submenu');
-            submenus.forEach(menu => menu.classList.remove('open'));
-        }
-
-        // Close modal when clicking outside content
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeModal();
-                }
-            });
-        });
-
-        // Toggle specific language menu by ID
-        function toggleLanguages(menuId) {
-            const menu = document.getElementById(menuId);
-            if (menu) {
-                menu.classList.toggle('open');
-            }
-        }
-
-        function openResource(url) {
-            if (url && url.length > 0) {
-                window.open(url, '_blank');
-            }
-        }
-
-        init();
-    </script>
+    function switchSemester(sem) {
+      document.querySelectorAll('.sem-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.subject-grid').forEach(g => g.classList.remove('active'));
+      
+      document.getElementById('tab-' + sem).classList.add('active');
+      document.getElementById('grid-sem' + sem).classList.add('active');
+    }
+  </script>
 </body>
 </html>
